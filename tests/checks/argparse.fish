@@ -758,7 +758,7 @@ argparse a/alpha -- --alpha=value --banna=value
 begin
     argparse long value=+ -- --lon -long -lon -valu=3 -valu 4 -val=3 -val 4
     set -lL
-    # CHECK: _flag_long '--long'  '--long'  '--long'
+    # CHECK: _flag_long '--long' '--long' '--long'
     # CHECK: _flag_value '3' '4' '3' '4'
     # CHECK: argv
     # CHECK: argv_opts '--lon' '-long' '-lon' '-valu=3' '-valu' '4' '-val=3' '-val' '4'

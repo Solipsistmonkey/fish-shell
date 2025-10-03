@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 set -l bind_optspecs \
     a/all \
     e/erase \
@@ -6,11 +7,42 @@ set -l bind_optspecs \
     preset \
     s/silent \
     user
+||||||| parent of c55cb6ab8 (Changed name of test fuction.)
+function __fish_bind_test2
+    set -l args
+    for i in (commandline -pxc)
+        switch $i
+            case "-*"
 
+            case "*"
+                set -a args $i
+        end
+    end
+
+    switch (count $args)
+        case 2
+            return 0
+    end
+
+    return 1
+=======
+function __fish_bind_has_keys \
+    --description 'Returns 0 if a key-combo exists in the bind command, 1 if there is none'
+>>>>>>> c55cb6ab8 (Changed name of test fuction.)
+
+<<<<<<< HEAD
 function __fish_bind_has_keys --inherit-variable bind_optspecs
     argparse $bind_optspecs -- $argv 2>/dev/null
     or return
     test (count $argv) -ge 2
+||||||| parent of c55cb6ab8 (Changed name of test fuction.)
+=======
+    set -l arg_count ( 
+        commandline -pcx | string match -rv -- '^-' | count
+    )
+    
+    test $arg_count -ge 2 ] && return 0 || return 1
+>>>>>>> c55cb6ab8 (Changed name of test fuction.)
 end
 
 complete -c bind -f
@@ -26,7 +58,13 @@ complete -c bind -s s -l silent -d 'Operate silently'
 complete -c bind -l preset -d 'Operate on preset bindings'
 complete -c bind -l user -d 'Operate on user bindings'
 
+<<<<<<< HEAD
 complete -c bind -n '__fish_bind_has_keys (commandline -pcx)' -a '(bind --function-names)' -d 'Function name' -x
+||||||| parent of c55cb6ab8 (Changed name of test fuction.)
+complete -c bind -n __fish_bind_test2 -a '(bind --function-names)' -d 'Function name' -x
+=======
+complete -c bind -n '__fish_bind_has_keys' -a '(bind --function-names)' -d 'Function name' -x
+>>>>>>> c55cb6ab8 (Changed name of test fuction.)
 
 function __fish_bind_complete --inherit-variable bind_optspecs
     argparse $bind_optspecs -- (commandline -xpc)[2..] 2>/dev/null
